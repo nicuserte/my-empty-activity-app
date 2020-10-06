@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp
+package ro.ubbcluj.cs.ilazar.myapp2
 
 import java.util.ArrayList
 

@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp
+package ro.ubbcluj.cs.ilazar.myapp2
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_item.view.*
-import ro.ubbcluj.cs.ilazar.myapp2.R
-import ro.ubbcluj.cs.ilazar.myapp2.TAG
 
 class ItemListAdapter(
     private val fragment: Fragment,

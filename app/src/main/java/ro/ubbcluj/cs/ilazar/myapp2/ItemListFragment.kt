@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_item_list.*
-import ro.ubbcluj.cs.ilazar.myapp.ItemListAdapter
-import ro.ubbcluj.cs.ilazar.myapp.ItemsViewModel
 
 class ItemListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
