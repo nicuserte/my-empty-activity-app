@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_item_list.*
 
 class ItemListFragment : Fragment() {
+    private lateinit var itemListAdapter: ItemListAdapter
+    private lateinit var itemsModel: ItemsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "onCreate")
@@ -23,15 +27,25 @@ class ItemListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-//            findNavController().navigate(R.id.action_ItemListFragment_to_ItemEditFragment)
-//        }
+        fab.setOnClickListener {
+            Log.v(TAG, "creating new item")
+            itemsModel.items.value?.size?.let { itemsModel.createItem(it) }
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.i(TAG, "onActivityCreated")
-        item_list.adapter = ItemListAdapter(this, ItemsViewModel.items)
+        setupItemList()
+    }
+
+    private fun setupItemList() {
+        itemListAdapter = ItemListAdapter(this)
+        item_list.adapter = itemListAdapter
+        itemsModel = ViewModelProvider(this).get(ItemsViewModel::class.java)
+        itemsModel.items.observe(viewLifecycleOwner, { value ->
+            itemListAdapter.items = value
+        })
     }
 
     override fun onDestroy() {

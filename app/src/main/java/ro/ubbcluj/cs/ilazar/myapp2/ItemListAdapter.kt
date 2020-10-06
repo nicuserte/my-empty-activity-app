@@ -10,9 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_item.view.*
 
 class ItemListAdapter(
-    private val fragment: Fragment,
-    private val items: List<Item>
+    private val fragment: Fragment
 ) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+
+    var items = emptyList<Item>()
+        set(value) {
+            field = value
+            notifyDataSetChanged();
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,7 +30,6 @@ class ItemListAdapter(
         Log.v(TAG, "onBindViewHolder $position")
         val item = items[position]
         holder.textView.text = item.text
-        holder.itemView.tag = item
     }
 
     override fun getItemCount() = items.size
