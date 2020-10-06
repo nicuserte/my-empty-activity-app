@@ -9,7 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ItemsViewModel : ViewModel() {
+class ItemListViewModel : ViewModel() {
     private val mutableItems = MutableLiveData<List<Item>>().apply { value = emptyList() }
 
     val items: LiveData<List<Item>> = mutableItems
