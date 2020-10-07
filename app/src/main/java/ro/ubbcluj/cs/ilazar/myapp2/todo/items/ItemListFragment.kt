@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.items
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_list.*
+import ro.ubbcluj.cs.ilazar.myapp2.R
+import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
 
 class ItemListFragment : Fragment() {
     private lateinit var itemListAdapter: ItemListAdapter

@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.item
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.ItemRepository
+import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Item
 
 class ItemEditViewModel : ViewModel() {
     private val mutableItem = MutableLiveData<Item>().apply { value = Item("", "") }

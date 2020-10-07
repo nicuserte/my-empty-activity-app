@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.item
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_edit.*
+import ro.ubbcluj.cs.ilazar.myapp2.R
+import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
 
 class ItemEditFragment : Fragment() {
     companion object {

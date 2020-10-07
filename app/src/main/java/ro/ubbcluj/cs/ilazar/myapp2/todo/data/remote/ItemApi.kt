@@ -1,10 +1,11 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.data.remote
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Item
 
 object ItemApi {
     private const val URL = "http://192.168.0.150:3000/"

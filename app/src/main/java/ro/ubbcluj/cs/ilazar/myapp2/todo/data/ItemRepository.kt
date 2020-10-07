@@ -1,6 +1,8 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.data
 
 import android.util.Log
+import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.remote.ItemApi
 
 object ItemRepository {
     private var cachedItems: MutableList<Item>? = null;

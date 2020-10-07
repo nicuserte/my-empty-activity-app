@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2
+package ro.ubbcluj.cs.ilazar.myapp2.todo.data
 
 data class Item(
     val id: String,

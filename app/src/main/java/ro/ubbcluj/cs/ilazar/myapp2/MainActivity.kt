@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
 
 class MainActivity : AppCompatActivity() {
 
