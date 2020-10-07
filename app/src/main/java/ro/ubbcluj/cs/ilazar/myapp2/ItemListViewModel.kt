@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ItemListViewModel : ViewModel() {
     private val mutableItems = MutableLiveData<List<Item>>().apply { value = emptyList() }
@@ -31,7 +29,7 @@ class ItemListViewModel : ViewModel() {
             mutableLoading.value = true
             mutableException.value = null
             try {
-                mutableItems.value = ItemRepository.getAll()
+                mutableItems.value = ItemRepository.loadAll()
                 Log.d(TAG, "loadItems succeeded");
                 mutableLoading.value = false
             } catch (e: Exception) {
@@ -40,9 +38,5 @@ class ItemListViewModel : ViewModel() {
                 mutableLoading.value = false
             }
         }
-    }
-
-    private suspend fun getItems() = withContext(Dispatchers.IO) {
-        return@withContext ItemRepository.getAll()
     }
 }

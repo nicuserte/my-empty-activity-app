@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_list.*
 
 class ItemListFragment : Fragment() {
@@ -16,7 +17,7 @@ class ItemListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "onCreate")
+        Log.v(TAG, "onCreate")
     }
 
     override fun onCreateView(
@@ -26,18 +27,14 @@ class ItemListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_item_list, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fab.setOnClickListener {
-            Log.v(TAG, "creating new item")
-            itemsModel.items.value?.size?.let { itemsModel.createItem(it) }
-        }
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.i(TAG, "onActivityCreated")
+        Log.v(TAG, "onActivityCreated")
         setupItemList()
+        fab.setOnClickListener {
+            Log.v(TAG, "add new item")
+            findNavController().navigate(R.id.ItemEditFragment)
+        }
     }
 
     private fun setupItemList() {
@@ -45,7 +42,7 @@ class ItemListFragment : Fragment() {
         item_list.adapter = itemListAdapter
         itemsModel = ViewModelProvider(this).get(ItemListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { items ->
-            Log.i(TAG, "update items")
+            Log.v(TAG, "update items")
             itemListAdapter.items = items
         })
         itemsModel.loading.observe(viewLifecycleOwner, { loading ->
@@ -64,6 +61,6 @@ class ItemListFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(TAG, "onDestroy")
+        Log.v(TAG, "onDestroy")
     }
 }
