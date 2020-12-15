@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2.todo.item
+package ro.ubbcluj.cs.ilazar.myapp2.todo.bug
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,17 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ro.ubbcluj.cs.ilazar.myapp2.todo.data.ItemRepository
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.BugRepository
 import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
-import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Item
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Bug
 
-class ItemEditViewModel : ViewModel() {
-    private val mutableItem = MutableLiveData<Item>().apply { value = Item("", "") }
+class BugEditViewModel : ViewModel() {
+    private val mutableItem = MutableLiveData<Bug>().apply { value = Bug("", "", "", 1) }
     private val mutableFetching = MutableLiveData<Boolean>().apply { value = false }
     private val mutableCompleted = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }
 
-    val item: LiveData<Item> = mutableItem
+    val bug: LiveData<Bug> = mutableItem
     val fetching: LiveData<Boolean> = mutableFetching
     val fetchingError: LiveData<Exception> = mutableException
     val completed: LiveData<Boolean> = mutableCompleted
@@ -27,7 +27,7 @@ class ItemEditViewModel : ViewModel() {
             mutableFetching.value = true
             mutableException.value = null
             try {
-                mutableItem.value = ItemRepository.load(itemId)
+                mutableItem.value = BugRepository.load(itemId)
                 Log.i(TAG, "loadItem succeeded")
                 mutableFetching.value = false
             } catch (e: Exception) {
@@ -38,18 +38,20 @@ class ItemEditViewModel : ViewModel() {
         }
     }
 
-    fun saveOrUpdateItem(text: String) {
+    fun saveOrUpdateItem(title: String, description: String, priority: String) {
         viewModelScope.launch {
             Log.i(TAG, "saveOrUpdateItem...");
             val item = mutableItem.value ?: return@launch
-            item.text = text
+            item.title = title
+            item.description = description
+            item.priority = priority.toInt()
             mutableFetching.value = true
             mutableException.value = null
             try {
                 if (item.id.isNotEmpty()) {
-                    mutableItem.value = ItemRepository.update(item)
+                    mutableItem.value = BugRepository.update(item)
                 } else {
-                    mutableItem.value = ItemRepository.save(item)
+                    mutableItem.value = BugRepository.save(item)
                 }
                 Log.i(TAG, "saveOrUpdateItem succeeded");
                 mutableCompleted.value = true

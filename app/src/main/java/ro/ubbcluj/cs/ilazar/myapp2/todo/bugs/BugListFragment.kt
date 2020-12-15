@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2.todo.items
+package ro.ubbcluj.cs.ilazar.myapp2.todo.bugs
 
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_item_list.*
+import kotlinx.android.synthetic.main.fragment_bug_list.*
 import ro.ubbcluj.cs.ilazar.myapp2.R
 import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
 
-class ItemListFragment : Fragment() {
-    private lateinit var itemListAdapter: ItemListAdapter
-    private lateinit var itemsModel: ItemListViewModel
+class BugListFragment : Fragment() {
+    private lateinit var bugListAdapter: BugListAdapter
+    private lateinit var itemsModel: BugListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class ItemListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_item_list, container, false)
+        return inflater.inflate(R.layout.fragment_bug_list, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,12 +40,12 @@ class ItemListFragment : Fragment() {
     }
 
     private fun setupItemList() {
-        itemListAdapter = ItemListAdapter(this)
-        item_list.adapter = itemListAdapter
-        itemsModel = ViewModelProvider(this).get(ItemListViewModel::class.java)
+        bugListAdapter = BugListAdapter(this)
+        item_list.adapter = bugListAdapter
+        itemsModel = ViewModelProvider(this).get(BugListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { items ->
             Log.v(TAG, "update items")
-            itemListAdapter.items = items
+            bugListAdapter.items = items
         })
         itemsModel.loading.observe(viewLifecycleOwner, { loading ->
             Log.i(TAG, "update loading")

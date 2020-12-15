@@ -5,25 +5,25 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Item
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Bug
 
-object ItemApi {
-    private const val URL = "http://192.168.0.150:3000/"
+object BugApi {
+    private const val URL = "http://192.168.0.106:3000/"
 
     interface Service {
-        @GET("/item")
-        suspend fun find(): List<Item>
+        @GET("/bug")
+        suspend fun find(): List<Bug>
 
-        @GET("/item/{id}")
-        suspend fun read(@Path("id") itemId: String): Item;
-
-        @Headers("Content-Type: application/json")
-        @POST("/item")
-        suspend fun create(@Body item: Item): Item
+        @GET("/bug/{id}")
+        suspend fun read(@Path("id") itemId: String): Bug;
 
         @Headers("Content-Type: application/json")
-        @PUT("/item/{id}")
-        suspend fun update(@Path("id") itemId: String, @Body item: Item): Item
+        @POST("/bug")
+        suspend fun create(@Body bug: Bug): Bug
+
+        @Headers("Content-Type: application/json")
+        @PUT("/bug/{id}")
+        suspend fun update(@Path("id") itemId: String, @Body bug: Bug): Bug
     }
 
     private val client: OkHttpClient = OkHttpClient.Builder().build()

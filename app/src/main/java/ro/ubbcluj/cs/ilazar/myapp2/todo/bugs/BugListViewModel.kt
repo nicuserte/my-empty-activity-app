@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.myapp2.todo.items
+package ro.ubbcluj.cs.ilazar.myapp2.todo.bugs
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,23 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ro.ubbcluj.cs.ilazar.myapp2.todo.data.ItemRepository
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.BugRepository
 import ro.ubbcluj.cs.ilazar.myapp2.core.TAG
-import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Item
+import ro.ubbcluj.cs.ilazar.myapp2.todo.data.Bug
 
-class ItemListViewModel : ViewModel() {
-    private val mutableItems = MutableLiveData<List<Item>>().apply { value = emptyList() }
+class BugListViewModel : ViewModel() {
+    private val mutableItems = MutableLiveData<List<Bug>>().apply { value = emptyList() }
     private val mutableLoading = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }
 
-    val items: LiveData<List<Item>> = mutableItems
+    val items: LiveData<List<Bug>> = mutableItems
     val loading: LiveData<Boolean> = mutableLoading
     val loadingError: LiveData<Exception> = mutableException
 
     fun createItem(position: Int): Unit {
-        val list = mutableListOf<Item>()
+        val list = mutableListOf<Bug>()
         list.addAll(mutableItems.value!!)
-        list.add(Item(position.toString(), "Item " + position))
+        list.add(Bug(position.toString(), "Item " + position, "", 1))
         mutableItems.value = list
     }
 
@@ -32,7 +32,7 @@ class ItemListViewModel : ViewModel() {
             mutableLoading.value = true
             mutableException.value = null
             try {
-                mutableItems.value = ItemRepository.loadAll()
+                mutableItems.value = BugRepository.loadAll()
                 Log.d(TAG, "loadItems succeeded");
                 mutableLoading.value = false
             } catch (e: Exception) {

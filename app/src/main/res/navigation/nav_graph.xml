@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/ItemListFragment"
-        android:name="ro.ubbcluj.cs.ilazar.myapp2.todo.items.ItemListFragment"
+        android:name="ro.ubbcluj.cs.ilazar.myapp2.todo.bugs.BugListFragment"
         android:label="@string/item_list_fragment_label"
-        tools:layout="@layout/fragment_item_list">
+        tools:layout="@layout/fragment_bug_list">
 
         <action
             android:id="@+id/action_ItemListFragment_to_ItemEditFragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/ItemEditFragment"
-        android:name="ro.ubbcluj.cs.ilazar.myapp2.todo.item.ItemEditFragment"
+        android:name="ro.ubbcluj.cs.ilazar.myapp2.todo.bug.BugEditFragment"
         android:label="@string/item_edit_fragment_label"
-        tools:layout="@layout/fragment_item_edit">
+        tools:layout="@layout/fragment_bug_edit">
 
         <action
             android:id="@+id/action_ItemEditFragment_to_ItemListFragment"
